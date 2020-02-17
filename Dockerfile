@@ -21,7 +21,8 @@ RUN apk add --no-cache ca-certificates jq curl bash nodejs && \
     # Init version 2 helm:
     helm init --client-only && \
     # update the helm repo:
-    helm repo add ${HELM_SRC_REPO} https://${HELM_SRC_REPO}
+    helm repo update ${HELM_SRC_REPO} https://${HELM_SRC_REPO} && \
+    helm repo list
 
 COPY . /usr/src/
 ENTRYPOINT ["node", "/usr/src/index.js"]
