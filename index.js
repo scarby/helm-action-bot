@@ -201,7 +201,7 @@ async function run() {
     const _add = [
       "repo",
       "add",
-      chart,
+      "charts-ose.clearmatics.com",
       repository,
     ];
     const _init = [
