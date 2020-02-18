@@ -205,6 +205,10 @@ async function run() {
       chart,
       repository,
     ];
+    const _init = [
+      "init",
+      "--client-only",
+    ];
     if (dryRun) args.push("--dry-run");
     if (appName) args.push(`--set=app.name=${appName}`);
     if (version) args.push(`--set=app.version=${version}`);
@@ -251,8 +255,11 @@ async function run() {
       });
     } else {
       if (repository) {
+        core.debug(`Helm init start`)
+        await exec.exec(helm, _init);
+        core.debug(`Helm init end`)
         await exec.exec(helm, _args);
-        core.debug(`print after helm repo add`)
+        core.debug(`print after helm repo add end`)
       }
       await exec.exec(helm, args, opts);
     }
