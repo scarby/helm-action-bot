@@ -191,7 +191,7 @@ async function run() {
     }};
     const args = [
       "install",
-      release,
+     // release,
       chart,
       "--atomic",
       `--namespace=${namespace}`,
