@@ -251,6 +251,7 @@ async function run() {
     } else {
       if (repository) {
         await exec.exec(helm, _args);
+        core.debug(`print after helm repo add`)
       }
       await exec.exec(helm, args, opts);
     }
