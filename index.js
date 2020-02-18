@@ -213,6 +213,9 @@ async function run() {
       "repo",
       "list",
     ];
+    const _version = [
+      "version",
+    ];
     if (dryRun) args.push("--dry-run");
     if (appName) args.push(`--set=app.name=${appName}`);
     if (version) args.push(`--set=app.version=${version}`);
@@ -265,6 +268,7 @@ async function run() {
         await exec.exec(helm, _args);
         core.debug(`print after helm repo add end`)
         await exec.exec(helm, _repo_list);
+        await exec.exec(helm, _version )
       }
       await exec.exec(helm, args, opts);
     }
