@@ -12,7 +12,6 @@ RUN apk add --no-cache ca-certificates jq curl bash nodejs && \
     mv linux-amd64/helm /usr/bin/helm && \
     chmod +x /usr/bin/helm && \
     rm -rf linux-amd64 && \
-    # curl -L https://charts-ose.clearmatics.com/autonity-1.1.1.tgz:
     # Install helm version 3:
     curl -L ${BASE_URL}/${HELM_3_FILE} |tar xvz && \
     mv linux-amd64/helm /usr/bin/helm3 && \
@@ -20,9 +19,11 @@ RUN apk add --no-cache ca-certificates jq curl bash nodejs && \
     rm -rf linux-amd64 && \
     # Init version 2 helm:
     helm init --client-only && \
+    curl -L https://charts-ose.clearmatics.com/autonity-1.1.1.tgz && \
+    ls -a
     # update the helm repo:
-    helm repo add ${HELM_SRC_REPO} https://${HELM_SRC_REPO} && \
-    helm repo list
+    # helm repo add ${HELM_SRC_REPO} https://${HELM_SRC_REPO}:
+    # helm repo list:
 
 COPY . /usr/src/
 ENTRYPOINT ["node", "/usr/src/index.js"]
