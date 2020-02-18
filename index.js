@@ -194,7 +194,6 @@ async function run() {
       release,
       chart,
       "--install",
-      "--wait",
       "--atomic",
       `--namespace=${namespace}`,
     ];
@@ -217,8 +216,9 @@ async function run() {
       "version",
     ];
     if (dryRun) args.push("--dry-run");
-    if (appName) args.push(`--set=app.name=${appName}`);
-    if (version) args.push(`--set=app.version=${version}`);
+    //if (appName) args.push(`--set=app.name=${appName}`);
+    //if (version) args.push(`--set=app.version=${version}`);
+    if (version) args.push(`--version=${version}`);
     if (timeout) args.push(`--timeout=${timeout}`);
     valueFiles.forEach(f => args.push(`--values=${f}`));
     args.push("--values=./values.yml");
