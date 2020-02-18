@@ -202,6 +202,7 @@ async function run() {
     const _args = [
       "repo",
       "add",
+      chart,
       repository,
     ];
     if (dryRun) args.push("--dry-run");
