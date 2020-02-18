@@ -165,6 +165,7 @@ async function run() {
     const removeCanary = getInput("remove_canary");
     const helm = getInput("helm") || "helm";
     const timeout = getInput("timeout");
+    const repository = getInput("repository")   // raj
 
     const dryRun = core.getInput("dry-run");
     const secrets = getSecrets(core.getInput("secrets"));
@@ -182,6 +183,7 @@ async function run() {
     core.debug(`param: valueFiles = "${JSON.stringify(valueFiles)}"`);
     core.debug(`param: removeCanary = ${removeCanary}`);
     core.debug(`param: timeout = "${timeout}"`);
+    core.debug(`param: repository = "${repository}"`); // raj
 
     // Setup command options and arguments.
     const opts = { env: {
@@ -195,6 +197,12 @@ async function run() {
       "--wait",
       "--atomic",
       `--namespace=${namespace}`,
+    ];
+    //raj to add args for hellm repo add
+    const _args = [
+      "repo",
+      "add",
+      repository,
     ];
     if (dryRun) args.push("--dry-run");
     if (appName) args.push(`--set=app.name=${appName}`);
@@ -241,6 +249,9 @@ async function run() {
         ignoreReturnCode: true
       });
     } else {
+      if ( repository) {
+        await exec.exec(helm, _args);
+      }
       await exec.exec(helm, args, opts);
     }
 
