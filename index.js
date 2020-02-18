@@ -215,6 +215,10 @@ async function run() {
     const _version = [
       "version",
     ];
+    const _update = [
+      "repo",
+      "update"
+    ];
     if (dryRun) args.push("--dry-run");
     //if (appName) args.push(`--set=app.name=${appName}`);
     //if (version) args.push(`--set=app.version=${version}`);
@@ -268,7 +272,8 @@ async function run() {
         await exec.exec(helm, _add);
         core.debug(`print after helm repo add end`)
         await exec.exec(helm, _repo_list);
-        await exec.exec(helm, _version, opts )
+        await exec.exec(helm, _update);
+        await exec.exec(helm, _version, opts );
       }
       await exec.exec(helm, args, opts);
     }
