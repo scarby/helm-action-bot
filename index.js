@@ -199,7 +199,7 @@ async function run() {
       `--namespace=${namespace}`,
     ];
     //raj to add args for hellm repo add
-    const _args = [
+    const _add = [
       "repo",
       "add",
       chart,
@@ -263,11 +263,11 @@ async function run() {
     } else {
       if (repository) {
         core.debug(`Helm init start`)
-        await exec.exec(helm, _init, opts);
+        await exec.exec(helm, _init);
         core.debug(`Helm init end`)
-        await exec.exec(helm, _args, opts);
+        await exec.exec(helm, _add);
         core.debug(`print after helm repo add end`)
-        await exec.exec(helm, _repo_list, opts);
+        await exec.exec(helm, _repo_list);
         await exec.exec(helm, _version, opts )
       }
       await exec.exec(helm, args, opts);
