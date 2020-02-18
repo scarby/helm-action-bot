@@ -196,6 +196,7 @@ async function run() {
       "--install",
       "--atomic",
       `--namespace=${namespace}`,
+      "--force",
     ];
     //raj to add args for hellm repo add
     const _add = [
