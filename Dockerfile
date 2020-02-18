@@ -20,6 +20,7 @@ RUN apk add --no-cache ca-certificates jq curl bash nodejs && \
     # Init version 2 helm:
     helm init --client-only && \
     curl -L https://charts-ose.clearmatics.com/autonity-1.1.1.tgz && \
+    cd /usr/src && \
     ls -a
     # update the helm repo:
     # helm repo add ${HELM_SRC_REPO} https://${HELM_SRC_REPO}:
