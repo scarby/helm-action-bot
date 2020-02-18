@@ -273,9 +273,10 @@ async function run() {
         core.debug(`print after helm repo add end`)
         await exec.exec(helm, _repo_list);
         await exec.exec(helm, _update);
-        await exec.exec(helm, _version, opts );
+        await exec.exec(helm, _version, opts);
+        await exec.exec(helm, args, opts);
       }
-      await exec.exec(helm, args, opts);
+     // await exec.exec(helm, args, opts);
     }
 
     await status(task === "remove" ? "inactive" : "success");
