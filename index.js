@@ -249,7 +249,7 @@ async function run() {
         ignoreReturnCode: true
       });
     } else {
-      if ( repository) {
+      if (repository) {
         await exec.exec(helm, _args);
       }
       await exec.exec(helm, args, opts);
