@@ -225,6 +225,8 @@ async function run() {
     const _fetch = [
       "fetch",
       chart,
+      "--repo",
+      repository
     ];
 
     if (dryRun) args.push("--dry-run");
