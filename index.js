@@ -283,6 +283,7 @@ async function run() {
           await exec.exec(helm, _update);
           await exec.exec(helm, _version, opts);
           await exec.exec(helm, _search);
+          await exec.exec('pwd');
           await exec.exec(helm, _fetch, opts);
           await exec.exec(helm, args, opts);
         }
