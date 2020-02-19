@@ -168,7 +168,7 @@ async function run() {
 
     const dryRun = core.getInput("dry-run");
     const secrets = getSecrets(core.getInput("secrets"));
-    const repository = getInput("repository")
+    const repository = getInput("repository");
     core.debug(`param: track = "${track}"`);
     core.debug(`param: release = "${release}"`);
     core.debug(`param: appName = "${appName}"`);
