@@ -280,6 +280,7 @@ async function run() {
       await exec.exec(helm, _init);
       await exec.exec('cat /root/.helm/repository/repositories.yaml')
       await exec.exec('echo $HELM_HOME')
+      await exec.exec(helm, _repo_list);
       await exec.exec(helm, args, opts);
     }
 
