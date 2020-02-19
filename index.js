@@ -279,10 +279,7 @@ async function run() {
       });
     } else {
       await exec.exec(helm, _init);
-      await exec.exec('cat /root/.helm/repository/repositories.yaml')
-      core.debug(process.env.HELM_HOME)
-      await exec.exec(helm, _repo_list);
-      await exec.exec(helm, "home");
+      core.debug(`helm home is ${process.env.HELM_HOME}`)
       await exec.exec(helm, args, opts);
     }
 
