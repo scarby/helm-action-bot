@@ -278,7 +278,7 @@ async function run() {
           await exec.exec(helm, _update);
           await exec.exec(helm, _version, opts);
           await exec.exec(helm, _search);
-          //await exec.exec(helm, args, opts);
+          await exec.exec(helm, args, opts);
         }
      // await exec.exec(helm, args, opts);
     }
