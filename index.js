@@ -190,17 +190,18 @@ async function run() {
       KUBECONFIG: process.env.KUBECONFIG,
     }};
     const args = [
-      "install",
-     // release,
+      "upgrade",
+      release,
       chart,
       "--atomic",
+      "--install"
       `--namespace=${namespace}`,
     ];
     //raj to add args for hellm repo add
     const _add = [
       "repo",
       "add",
-      "charts-ose.clearmatics.com",
+      "charts-name",
       repository,
     ];
     const _init = [
