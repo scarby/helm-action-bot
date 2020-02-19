@@ -274,9 +274,9 @@ async function run() {
       });
     } else {
         if (repository) {
-          core.debug(`Helm init start`)
-          await exec.exec(helm, _init);
-          core.debug(`Helm init end`)
+         // core.debug(`Helm init start`)
+         // await exec.exec(helm, _init);
+         // core.debug(`Helm init end`)
           await exec.exec(helm, _add);
           core.debug(`print after helm repo add end`)
           await exec.exec(helm, _repo_list);
