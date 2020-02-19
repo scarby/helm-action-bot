@@ -221,11 +221,16 @@ async function run() {
     const _search = [
       "search",
       "autonity",
-    ];    
+    ];
+    const _fetch = [
+      "fetch",
+      chart,
+    ];
+
     if (dryRun) args.push("--dry-run");
     if (appName) args.push(`--set=app.name=${appName}`);
    // if (version) args.push(`--set=app.version=${version}`);
-    if (version) args.push(`--version=${version}`); 
+    if (version) args.push(`--version=${version}`);
     if (timeout) args.push(`--timeout=${timeout}`);
     valueFiles.forEach(f => args.push(`--values=${f}`));
     args.push("--values=./values.yml");
@@ -278,6 +283,7 @@ async function run() {
           await exec.exec(helm, _update);
           await exec.exec(helm, _version, opts);
           await exec.exec(helm, _search);
+          await exec.exec(helm, _fetch, opts);
           await exec.exec(helm, args, opts);
         }
      // await exec.exec(helm, args, opts);
