@@ -278,7 +278,6 @@ async function run() {
         ignoreReturnCode: true
       });
     } else {
-      await exec.exec(helm, _init);
       core.debug(`helm home is ${process.env.HELM_HOME}`)
       await exec.exec(helm, args, opts);
     }
