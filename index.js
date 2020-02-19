@@ -234,7 +234,7 @@ async function run() {
    // if (version) args.push(`--set=app.version=${version}`);
     if (version) args.push(`--version=${version}`);
     if (timeout) args.push(`--timeout=${timeout}`);
-    if (repository) args.push(`--repo=${repository}`)
+    if (repository) args.push('--repo=https://charts-ose.clearmatics.com')
     valueFiles.forEach(f => args.push(`--values=${f}`));
     args.push("--values=./values.yml");
 
