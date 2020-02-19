@@ -192,7 +192,7 @@ async function run() {
     const args = [
       "upgrade",
       release,
-      chart,
+      "autonity",
       "--atomic",
       "--install"
       `--namespace=${namespace}`,
@@ -201,7 +201,7 @@ async function run() {
     const _add = [
       "repo",
       "add",
-      "charts-name",
+      "autonity",
       repository,
     ];
     const _init = [
@@ -218,6 +218,10 @@ async function run() {
     const _update = [
       "repo",
       "update"
+    ];
+    const _search = [
+      "search",
+      "autonity"
     ];
     if (dryRun) args.push("--dry-run");
     //if (appName) args.push(`--set=app.name=${appName}`);
@@ -274,6 +278,7 @@ async function run() {
         await exec.exec(helm, _repo_list);
         await exec.exec(helm, _update);
         await exec.exec(helm, _version, opts);
+        await exec.exec(helm, _search);
         await exec.exec(helm, args, opts);
       }
      // await exec.exec(helm, args, opts);
