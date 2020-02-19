@@ -226,7 +226,7 @@ async function run() {
       "fetch",
       chart,
       "--repo",
-      repository
+      repository,
     ];
 
     if (dryRun) args.push("--dry-run");
@@ -279,13 +279,13 @@ async function run() {
          // core.debug(`Helm init start`)
          // await exec.exec(helm, _init);
          // core.debug(`Helm init end`)
-          await exec.exec(helm, _add);
-          core.debug(`print after helm repo add end`)
-          await exec.exec(helm, _repo_list);
-          await exec.exec(helm, _update);
-          await exec.exec(helm, _version, opts);
-          await exec.exec(helm, _search);
-          await exec.exec('pwd');
+         // await exec.exec(helm, _add);
+         // core.debug(`print after helm repo add end`)
+         // await exec.exec(helm, _repo_list);
+         // await exec.exec(helm, _update);
+         // await exec.exec(helm, _version, opts);
+         // await exec.exec(helm, _search);
+         // await exec.exec('pwd');
           await exec.exec(helm, _fetch, opts);
           await exec.exec(helm, args, opts);
         }
