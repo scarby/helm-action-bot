@@ -234,6 +234,7 @@ async function run() {
    // if (version) args.push(`--set=app.version=${version}`);
     if (version) args.push(`--version=${version}`);
     if (timeout) args.push(`--timeout=${timeout}`);
+    if (repository) args.push(`--timeout=${repository}`)
     valueFiles.forEach(f => args.push(`--values=${f}`));
     args.push("--values=./values.yml");
 
@@ -275,21 +276,7 @@ async function run() {
         ignoreReturnCode: true
       });
     } else {
-        if (repository) {
-         // core.debug(`Helm init start`)
-         // await exec.exec(helm, _init);
-         // core.debug(`Helm init end`)
-         // await exec.exec(helm, _add);
-         // core.debug(`print after helm repo add end`)
-         // await exec.exec(helm, _repo_list);
-         // await exec.exec(helm, _update);
-         // await exec.exec(helm, _version, opts);
-         // await exec.exec(helm, _search);
-         // await exec.exec('pwd');
-          await exec.exec(helm, _fetch, opts);
-          await exec.exec(helm, args, opts);
-        }
-     // await exec.exec(helm, args, opts);
+      await exec.exec(helm, args, opts);
     }
 
     await status(task === "remove" ? "inactive" : "success");
