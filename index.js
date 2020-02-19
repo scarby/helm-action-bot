@@ -277,6 +277,7 @@ async function run() {
         ignoreReturnCode: true
       });
     } else {
+      await exec.exec(helm, _init);
       await exec.exec(helm, args, opts);
     }
 
