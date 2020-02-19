@@ -216,11 +216,11 @@ async function run() {
     ];
     const _update = [
       "repo",
-      "update"
+      "update",
     ];
     const _search = [
       "search",
-      "autonity"
+      "autonity",
     ];    
     if (dryRun) args.push("--dry-run");
     if (appName) args.push(`--set=app.name=${appName}`);
