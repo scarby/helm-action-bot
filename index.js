@@ -165,7 +165,6 @@ async function run() {
     const removeCanary = getInput("remove_canary");
     const helm = getInput("helm") || "helm";
     const timeout = getInput("timeout");
-    const repository = getInput("repository")   // raj
 
     const dryRun = core.getInput("dry-run");
     const secrets = getSecrets(core.getInput("secrets"));
@@ -183,7 +182,6 @@ async function run() {
     core.debug(`param: valueFiles = "${JSON.stringify(valueFiles)}"`);
     core.debug(`param: removeCanary = ${removeCanary}`);
     core.debug(`param: timeout = "${timeout}"`);
-    core.debug(`param: repository = "${repository}"`); // raj
 
     // Setup command options and arguments.
     const opts = { env: {
@@ -192,41 +190,15 @@ async function run() {
     const args = [
       "upgrade",
       release,
-      "autonity",
+      chart,
+      "--install",
+      "--wait",
       "--atomic",
-      "--install"
       `--namespace=${namespace}`,
     ];
-    //raj to add args for hellm repo add
-    const _add = [
-      "repo",
-      "add",
-      "autonity",
-      repository,
-    ];
-    const _init = [
-      "init",
-      "--client-only",
-    ];
-    const _repo_list = [
-      "repo",
-      "list",
-    ];
-    const _version = [
-      "version",
-    ];
-    const _update = [
-      "repo",
-      "update"
-    ];
-    const _search = [
-      "search",
-      "autonity"
-    ];
     if (dryRun) args.push("--dry-run");
-    //if (appName) args.push(`--set=app.name=${appName}`);
-    //if (version) args.push(`--set=app.version=${version}`);
-    if (version) args.push(`--version=${version}`);
+    if (appName) args.push(`--set=app.name=${appName}`);
+    if (version) args.push(`--set=app.version=${version}`);
     if (timeout) args.push(`--timeout=${timeout}`);
     valueFiles.forEach(f => args.push(`--values=${f}`));
     args.push("--values=./values.yml");
@@ -269,19 +241,7 @@ async function run() {
         ignoreReturnCode: true
       });
     } else {
-      if (repository) {
-        core.debug(`Helm init start`)
-        await exec.exec(helm, _init);
-        core.debug(`Helm init end`)
-        await exec.exec(helm, _add);
-        core.debug(`print after helm repo add end`)
-        await exec.exec(helm, _repo_list);
-        await exec.exec(helm, _update);
-        await exec.exec(helm, _version, opts);
-        await exec.exec(helm, _search);
-        await exec.exec(helm, args, opts);
-      }
-     // await exec.exec(helm, args, opts);
+      await exec.exec(helm, args, opts);
     }
 
     await status(task === "remove" ? "inactive" : "success");
